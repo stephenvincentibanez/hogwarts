@@ -43,12 +43,12 @@ export default class HogContainer extends React.Component{
         }
         else{
             switch(this.state.greaseFilter){
+                default:
+                return this.props.hogs.map(hog => <HogCard hog={hog} toggleDisplay={this.toggleDisplay}/>)
                 case "true" : 
                 return this.props.hogs.filter(hog => (hog.greased === true)).map(hog => <HogCard hog={hog} toggleDisplay={this.toggleDisplay}/>)
-                break;
                 case "false" :
                 return this.props.hogs.filter(hog => (hog.greased === false)).map(hog => <HogCard hog={hog} toggleDisplay={this.toggleDisplay}/>)
-                break;
                 case "all" :
                 return this.props.hogs.map(hog => <HogCard hog={hog} toggleDisplay={this.toggleDisplay}/>)
             }

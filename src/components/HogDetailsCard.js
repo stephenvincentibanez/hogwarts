@@ -1,5 +1,4 @@
 import React from 'react'
-import HogCard from './HogCard'
 
 export default class HogDetailsCard extends React.Component{
     
