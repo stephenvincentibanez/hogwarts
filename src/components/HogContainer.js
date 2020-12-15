@@ -8,7 +8,8 @@ export default class HogContainer extends React.Component{
     state = {
         display: false,
         hog: "",
-        greaseFilter: "all"
+        greaseFilter: "all",
+        sort: ""
       }
     
     toggleDisplay = (hog) => {
@@ -24,7 +25,19 @@ export default class HogContainer extends React.Component{
         })
     }
 
+    handleChange = (e) => {
+        this.setState({
+            sort: e.target.value
+        })
+    }
+
     buildHogCards = () => {
+        if(this.state.sort === "name"){
+            (this.props.hogs.sort((a,b) => (a.name > b.name) ? 1 : -1 ))
+        }
+        else if(this.state.sort === "weight"){
+            (this.props.hogs.sort((a,b) => (a.weight > b.weight) ? 1 : -1 ))
+        }
         if(this.state.display){
             return <HogDetailsCard hog={this.state.hog} toggleDisplay={this.toggleDisplay}/> 
         }
@@ -45,7 +58,7 @@ export default class HogContainer extends React.Component{
     render(){
         return(
             <div>
-                <Filter handleClick={this.handleClick}/>
+                <Filter handleClick={this.handleClick} handleChange={this.handleChange}/>
                 {this.buildHogCards()}
             </div>
         )
